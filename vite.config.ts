@@ -25,4 +25,21 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    https: false,
+    port: 8079,
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        configure: (proxy, options) => {
+          // proxy will be an instance of 'http-proxy'
+          proxy.on("proxyReq", (proxyReq, req, res, options) => {
+            console.log(39, req.headers);
+            proxyReq.setHeader("domain", req.headers.host);
+          });
+        },
+      },
+    },
+  },
 });
