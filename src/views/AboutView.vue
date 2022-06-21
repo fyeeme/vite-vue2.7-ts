@@ -4,6 +4,22 @@
   </div>
 </template>
 
+<script setup lang="ts">
+import { onMounted } from "vue";
+
+const demoApi = () => {
+  return Promise.resolve(22);
+};
+const getDemoAPi = async () => {
+  const res = await demoApi();
+
+  console.log("res", res);
+};
+
+onMounted(() => {
+  getDemoAPi();
+});
+</script>
 <style>
 @media (min-width: 1024px) {
   .about {
