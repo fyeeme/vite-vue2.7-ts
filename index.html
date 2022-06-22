@@ -9,5 +9,11 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      //CSS variables polyfill for ie 11
+      window.MSInputMethodContext &&
+        document.documentMode &&
+        document.write('<script src="/css-var-polyfill.min.js"><\/script>');
+    </script>
   </body>
 </html>
