@@ -7,7 +7,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
     <header>
       <img
         alt="Vue logo"
-        class="logo"
+        class="logo w-32 h-32"
         src="@/assets/logo.svg"
         width="125"
         height="125"
@@ -34,6 +34,7 @@ import HelloWorld from "@/components/HelloWorld.vue";
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  display: flex;
 
   font-weight: normal;
 }
@@ -90,12 +91,6 @@ nav a:first-of-type {
   body {
     display: flex;
     place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 
   header {
