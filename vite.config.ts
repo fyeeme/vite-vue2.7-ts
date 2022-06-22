@@ -3,9 +3,7 @@ import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import legacy from "@vitejs/plugin-legacy";
 import vue from "@vitejs/plugin-vue2";
-
-console.log(7, fileURLToPath(new URL("./src", import.meta.url)));
-console.log(8, __dirname);
+import WindiCSS from 'vite-plugin-windicss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,6 +13,7 @@ export default defineConfig({
       targets: ["ie >= 11"],
       additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
     }),
+    WindiCSS()
   ],
   build: {
     sourcemap: true,
@@ -27,7 +26,7 @@ export default defineConfig({
   },
   server: {
     https: false,
-    port: 8079,
+    port: 3003,
     proxy: {
       "/api": {
         target: "http://localhost:8080",
@@ -35,8 +34,8 @@ export default defineConfig({
         configure: (proxy, options) => {
           // proxy will be an instance of 'http-proxy'
           proxy.on("proxyReq", (proxyReq, req, res, options) => {
-            console.log(39, req.headers);
-            proxyReq.setHeader("domain", req.headers.host);
+            const hostname: any = req.headers.host?.split(":")[0] || "";
+            proxyReq.setHeader("domain", hostname);
           });
         },
       },

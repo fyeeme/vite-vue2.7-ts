@@ -3,6 +3,9 @@ import App from "./App.vue";
 import router from "./router";
 import { createPinia, PiniaVuePlugin } from "pinia";
 
+import "@/styles/variables.css";
+import 'windi.css'
+
 Vue.use(PiniaVuePlugin);
 const pinia = createPinia();
 

@@ -1,9 +1,16 @@
+<template>
+  <main class="main text-primary bg-gray-300 text-base py-6 px-4">
+    222
+    <TheWelcome />
+  </main>
+</template>
+
 <script setup lang="ts">
 import TheWelcome from "@/components/TheWelcome.vue";
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style lang="less">
+.main {
+  background-color: var(--primary-color);
+}
+</style>
