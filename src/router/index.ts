@@ -1,26 +1,35 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import VueRouter, { RouteConfig } from "vue-router";
 
 Vue.use(VueRouter);
 
+const routes: RouteConfig[] = [
+  {
+    path: "/",
+    name: "home",
+    component: () => import("@/pages/home.vue"),
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("@/pages/about.vue"),
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notFound",
+    component: () => import("@/pages/secure/404.vue"),
+  },
+];
+
 const router = new VueRouter({
   mode: "history",
-  routes: [
-    {
-      path: "/",
-      name: "home",
-      component: HomeView,
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
-    },
-  ],
+  routes: routes,
 });
 
 export default router;
