@@ -10,12 +10,8 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-
-const demoApi = () => {
-  return Promise.resolve(22);
-};
 const getDemoAPi = async () => {
-  const res = await demoApi();
+  const res = await Promise.resolve(() => "hello");
 
   console.log("res", res);
 };
